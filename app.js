@@ -76,10 +76,9 @@ const PORT = process.env.PORT || 3030
 
 console.log('the env port', process.env.PORT)
 
-
 mongoose
     .connect(
-        `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@cluster0.fgui4.mongodb.net/${process.env.MONGO_DEFAULT_DATABASE}?retryWrites=true&w=majority`,
+        `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@cluster0.nlhga.mongodb.net/${process.env.MONGO_DEFAULT_DATABASE}?retryWrites=true&w=majority`,
         { useUnifiedTopology: true, useNewUrlParser: true }
     )
     .then((result) => {

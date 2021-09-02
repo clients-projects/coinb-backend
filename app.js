@@ -34,7 +34,7 @@ app.use((req, res, next) => {
 })
 
 app.get('/', (req, res) => {
-    res.send("Welcome to Crptodefiwallet")
+    res.send("Welcome to DefiWebWallet")
 })
 
 app.use(auth)

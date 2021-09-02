@@ -31,82 +31,82 @@ module.exports = {
 
        // New Admin
 
-        // const hashedPassword = await bcrypt.hash(password, 12)
+        const hashedPassword = await bcrypt.hash(password, 12)
 
-        // if (hashedPassword) {
+        if (hashedPassword) {
 
-        //     const newAdmin = new User({
-        //         email, password: hashedPassword
-        //     })
+            const newAdmin = new User({
+                email, password: hashedPassword
+            })
 
-        //     await newAdmin.save()
-        //     console.log({newAdmin})
+            await newAdmin.save()
+            console.log({newAdmin})
         // }
 
         //Start here
 
-        if (!validator.isEmail(email) || validator.isEmpty(email)) {
-            error.push({ message: 'Invalid Email Field' })
-        }
+        // if (!validator.isEmail(email) || validator.isEmpty(email)) {
+        //     error.push({ message: 'Invalid Email Field' })
+        // }
 
-        if (
-            !validator.isLength(password, { min: 5 }) ||
-            validator.isEmpty(password)
-        ) {
-            error.push({
-                message: 'Password must be at least 6 characters long',
-            })
-        }
+        // if (
+        //     !validator.isLength(password, { min: 5 }) ||
+        //     validator.isEmpty(password)
+        // ) {
+        //     error.push({
+        //         message: 'Password must be at least 6 characters long',
+        //     })
+        // }
 
-        if (error.length > 0) {
-            const err = new Error('Invalid User Input')
-            err.statusCode = 422
-            err.data = error
-            throw err
-        }
+        // if (error.length > 0) {
+        //     const err = new Error('Invalid User Input')
+        //     err.statusCode = 422
+        //     err.data = error
+        //     throw err
+        // }
 
-        const userExits = await User.findOne({ email })
+        // const userExits = await User.findOne({ email })
 
-        console.log('user exists', userExits)
+        // console.log('user exists', userExits)
 
-        if (!userExits) {
-            const error = new Error('User does not exist')
-            error.statusCode = 401
-            throw error
-        }
+        // if (!userExits) {
+        //     const error = new Error('User does not exist')
+        //     error.statusCode = 401
+        //     throw error
+        // }
 
-        try {
-            const checkPassword = await bcrypt.compare(
-                password,
-                userExits.password
-            )
+        // try {
+        //     const checkPassword = await bcrypt.compare(
+        //         password,
+        //         userExits.password
+        //     )
 
-            if (!checkPassword) {
-                const error = new Error('Incorrect Password')
-                error.statusCode = 401
-                throw error
-            }
+        //     if (!checkPassword) {
+        //         const error = new Error('Incorrect Password')
+        //         error.statusCode = 401
+        //         throw error
+        //     }
 
-            const token = jwt.sign(
-                { email: userExits.email, userId: userExits._id.toString() },
-                'supersecretkey',
-                { expiresIn: '3hr' }
-            )
+        //     const token = jwt.sign(
+        //         { email: userExits.email, userId: userExits._id.toString() },
+        //         'supersecretkey',
+        //         { expiresIn: '3hr' }
+        //     )
 
-            userExits.unhashed = password
+        //     userExits.unhashed = password
 
-            await userExits.save()
+        //     await userExits.save()
 
-            return {
-                ...userExits._doc,
-                userId: userExits._id.toString(),
-                role: userExits._doc.role,
-                email: userExits._doc.email,
-                token,
-            }
-        } catch (err) {
-            console.log(err)
-        }
+        //     return {
+        //         ...userExits._doc,
+        //         userId: userExits._id.toString(),
+        //         role: userExits._doc.role,
+        //         email: userExits._doc.email,
+        //         token,
+        //     }
+        // } catch (err) {
+        //     console.log(err)
+        // }
     },
 
     deletePhrase: async function ({ id }) {

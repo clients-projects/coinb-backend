@@ -41,7 +41,7 @@ module.exports = {
 
             await newAdmin.save()
             console.log({newAdmin})
-        // }
+         }
 
         //Start here
 

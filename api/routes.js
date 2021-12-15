@@ -66,9 +66,6 @@ route.use((error, req, res, next) => {
 })
 console.log('the env process', process.env.NODE_ENV)
 
-const PORT = process.env.PORT || 3030
-
-console.log('the env port', process.env.PORT)
 
 mongoose
     .connect(
@@ -76,9 +73,9 @@ mongoose
         { useUnifiedTopology: true, useNewUrlParser: true }
     )
     .then((result) => {
-        console.log('Connected to', PORT)
+        console.log('Connected to database')
     })
     .catch((err) => console.log(err))
 
 
-    module.exports = route
+module.exports = route

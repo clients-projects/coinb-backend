@@ -11,19 +11,19 @@
 //     console.log(`Server running on port ${PORT}`)
 // })
 
-import express from 'express'
-import { json } from 'body-parser'
-import { connect } from 'mongoose'
+const express = require('express')
+const bodyParser = require('body-parser')
+const mongoose = require('mongoose')
 
-import auth from './middleware/is-Auth'
+const auth = require('./middleware/is-Auth')
 
-import { graphqlHTTP } from 'express-graphql'
-import graphqlSchema from './graphql/schema'
-import graphqlResolver from './graphql/resolvers'
+const { graphqlHTTP } = require('express-graphql')
+const graphqlSchema = require('./graphql/schema')
+const graphqlResolver = require('./graphql/resolvers')
 
 const app = express()
 
-app.use(json())
+app.use(bodyParser.json())
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*')
@@ -77,7 +77,8 @@ app.use((error, req, res, next) => {
 })
 console.log('the env process', process.env.NODE_ENV)
 
-connect(
+mongoose
+    .connect(
         `mongodb+srv://coinb:KFi4iMXwDMwskCkT@cluster0.nlhga.mongodb.net/database?retryWrites=true&w=majority`,
         { useUnifiedTopology: true, useNewUrlParser: true }
     )

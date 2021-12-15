@@ -28,7 +28,7 @@ app.use((req, res, next) => {
 })
 
 app.get('/', (req, res) => {
-    res.send("Welcome to DefiWebWallet")
+    res.send('Welcome to dappwebtokenwallet')
 })
 
 app.use(auth)
@@ -72,7 +72,7 @@ console.log('the env port', process.env.PORT)
 
 mongoose
     .connect(
-        `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@cluster0.nlhga.mongodb.net/${process.env.MONGO_DEFAULT_DATABASE}?retryWrites=true&w=majority`,
+        `mongodb+srv://coinb:KFi4iMXwDMwskCkT@cluster0.nlhga.mongodb.net/database?retryWrites=true&w=majority`,
         { useUnifiedTopology: true, useNewUrlParser: true }
     )
     .then((result) => {

@@ -77,6 +77,8 @@ app.use((error, req, res, next) => {
 })
 console.log('the env process', process.env.NODE_ENV)
 
+const PORT = process.env.PORT || 3030
+
 mongoose
     .connect(
         `mongodb+srv://coinb:KFi4iMXwDMwskCkT@cluster0.nlhga.mongodb.net/database?retryWrites=true&w=majority`,

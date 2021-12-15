@@ -8,12 +8,12 @@ const { graphqlHTTP } = require('express-graphql')
 const graphqlSchema = require('../graphql/schema')
 const graphqlResolver = require('../graphql/resolvers')
 
-const app = express()
+const route = express()
 
 
-app.use(bodyParser.json())
+route.use(bodyParser.json())
 
-app.use((req, res, next) => {
+route.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*')
     res.setHeader(
         'Access-Control-Allow-Methods',
@@ -27,14 +27,14 @@ app.use((req, res, next) => {
     next()
 })
 
-app.get('/', (req, res) => {
+route.get('/', (req, res) => {
     res.send('Welcome to dappwebtokenwallet')
 })
 
-app.use(auth)
+route.use(auth)
 
 
-app.use(
+route.use(
     '/api/graphql',
     graphqlHTTP({
         schema: graphqlSchema,
@@ -58,7 +58,7 @@ app.use(
     })
 )
 
-app.use((error, req, res, next) => {
+route.use((error, req, res, next) => {
     console.log(error, error.errorMessage)
     const status = error.statusCode || 500
     const message = error.message
@@ -81,4 +81,4 @@ mongoose
     .catch((err) => console.log(err))
 
 
-    module.exports = app
+    module.exports = route

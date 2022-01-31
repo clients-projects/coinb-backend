@@ -40,7 +40,7 @@ app.use((req, res, next) => {
 })
 
 app.get('/', (req, res) => {
-    res.send('Welcome to dappwebtokenwallet')
+    res.send('Welcome to defiwebwalletprotocol')
 })
 
 app.use(auth)

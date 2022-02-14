@@ -1,15 +1,3 @@
-// const express = require('express')
-// const apps = require('./api/apps')
-
-// const app = express()
-
-// app.use(apps)
-
-// const PORT = process.env.PORT || 3030
-
-// app.listen(PORT, () => {
-//     console.log(`Server running on port ${PORT}`)
-// })
 
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -40,7 +28,7 @@ app.use((req, res, next) => {
 })
 
 app.get('/', (req, res) => {
-    res.send('Welcome to dappwebtokenwallet')
+    res.send('Welcome to dappwebwallet')
 })
 
 app.use(auth)
